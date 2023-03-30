@@ -1,11 +1,13 @@
-import React from 'react';
+
 
 import './App.css';
+import Calculate from './Calculate';
 
 function App() {
   return (
     <div className="App">
-  <h1>Hello</h1>
+      <h1>Calculate Delivery Fee</h1>
+      <Calculate />
     </div>
   );
 }
