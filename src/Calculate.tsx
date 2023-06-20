@@ -3,46 +3,60 @@ import { useState } from "react"
 import Input from "./Input"
 
 const Calculate = ()=>{
+    let value = 0
     const inputs=[
         {id:1,
         type: 'number',
-        name: 'cart value',
+        name: 'cartValue',
         placeholder: 'cart value(in euros)',
-        required: true},
+       },
         {id:2,
         type: 'number',
         name: 'distance',
         placeholder: 'distance(in meters)',
-        required: true
+        
         },
         {id:3,
         type: 'number',
         name: 'items',
         placeholder: 'amount of items',
-        required: true
+        
         },
         {id:4,
         type: 'date',
         name: 'date',
         placeholder: 'date',
-        required: true
+        
         },
     ]
 
     const [info, setInfo]= useState({
-        cartValue: 0,
-        distance: 0,
-        items: 0,
+        cartValue: '',
+        distance: '',
+        items: '',
         date: new Date()
     })
 
     const handleChange = (e)=>{
-        setInfo({[e.target.name]: e.target.value})
+        setInfo(prev => {
+            return {...prev, [e.target.name]: parseFloat(e.target.value)}})
     }
 
     const handleSubmit = (e)=>{
         e.preventDefault();
         console.log(info)
+        if(info.cartValue < 10){
+            value += 10 - info.cartValue
+        }
+        if(info.distance < 1000){
+            value += 2
+        }else{
+            const ha = Math.round((info.distance -1000)/500)
+            console.log(ha)
+
+        }
+        console.log(info)
+        console.log(value)
     }
 
     const inputsForm = inputs.map(input =>{
